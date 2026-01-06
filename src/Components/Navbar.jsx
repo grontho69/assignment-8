@@ -1,8 +1,14 @@
 import React from 'react'
+import MyContainer from './MyContainer'
+import { FaGithub } from "react-icons/fa";
+import { Link, NavLink } from 'react-router';
+import Installation from './../Pages/Installation';
+
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    
+     <div className="navbar bg-base-100 shadow-sm">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -11,32 +17,38 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
         <li>
-          <a>Parent</a>
-          
-        </li>
-        <li><a>Item 3</a></li>
+          <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+          <NavLink to="/all-apps">Apps</NavLink>
+          </li>
+          <li>
+          <NavLink to="/installation">Installation</NavLink>
+          </li>
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <Link to="/" className="btn btn-ghost text-xl">Hero.IO</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
+          <li>
+          <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+          <NavLink to="/all-apps">Apps</NavLink>
+          </li>
+          <li>
+          <NavLink to="/installation">Installation</NavLink>
+          </li>
+      
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    <NavLink to="/contribution" className="btn text-white bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))]">Contribution</NavLink>
   </div>
 </div>
+    
   )
 }
 
