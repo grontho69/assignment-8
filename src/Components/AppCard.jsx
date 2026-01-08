@@ -8,10 +8,10 @@ const AppCard = ({item}) => {
        <Link to="/app-details" className="hover-3d my-12 mx-2 cursor-pointer gap-4">
   
   {/* content */}
-  <div className="card w-96 bg-white text-black ">
+        <div className="card  bg-white text-black shadow-sm hover:shadow-lg border border-gray-200 rounded-2xl ">
     <div className="card-body p-2 ">
       <div className="flex justify-between mb-10">
-        <figure className="w-60 rounded-2xl">
+        <figure className="h-60 overflow-hidden rounded-2xl">
                    <img src={item.image} alt={item.title} />
       
   </figure>

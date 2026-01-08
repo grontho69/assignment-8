@@ -1,13 +1,18 @@
 import React from 'react'
-import { Link, useLoaderData } from 'react-router';
+import { Link } from 'react-router';
 import AppCard from '../Components/AppCard';
 import heroImg from "../assets/hero.png"
-  
+import { BsGooglePlay } from "react-icons/bs";
+  import { FaAppStoreIos } from "react-icons/fa";
+import useAppData from '../Hooks/useAppData';
 
 
 const Home = () => {
-  const appData = useLoaderData();
-  console.log(appData)
+const { appData} =useAppData()
+  const data = useAppData();
+  console.log(data)
+  const TrendingApps = appData.slice(0,8)
+
   return (
     <div>
  {/*hero section*/}
@@ -24,8 +29,8 @@ const Home = () => {
 
       {/* Buttons */}
       <div className="flex gap-6">
-        <button className="btn ">Google Play</button>
-        <button className="btn ">App Store</button>
+        <button className="btn "> <BsGooglePlay /> Google Play</button>
+        <button className="btn "> <FaAppStoreIos /> App Store</button>
       </div>
 
       {/* Image */}
@@ -37,26 +42,28 @@ const Home = () => {
     </div>
   </div>
       </div>
-      <div className="stats bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))] text-white ">
-  <div className="stat">
+      <div className=" bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))] text-white w-full p-20 ">
+        <h2 className='text-3xl md:text-4xl font-bold text-center mb-12 '>Trusted by Millions, Built for You</h2>
+ <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
     
-    <div className="stat-title">Downloads</div>
-    <div className="stat-value">31K</div>
-    <div className="stat-desc">Jan 1st - Feb 1st</div>
-  </div>
+    <div>
+      <p className="text-sm opacity-80">Total Downloads</p>
+      <p className="text-4xl font-bold mt-2">29.6M</p>
+      <p className="text-sm opacity-80 mt-1">21% more than last month</p>
+    </div>
 
-  <div className="stat">
-    
-    <div className="stat-title">New Users</div>
-    <div className="stat-value">4,200</div>
-    <div className="stat-desc">↗︎ 400 (22%)</div>
-  </div>
+    <div>
+      <p className="text-sm opacity-80">Total Reviews</p>
+      <p className="text-4xl font-bold mt-2">906K</p>
+      <p className="text-sm opacity-80 mt-1">46% more than last month</p>
+    </div>
 
-  <div className="stat">
-  
-    <div className="stat-title">New Registers</div>
-    <div className="stat-value">1,200</div>
-    <div className="stat-desc">↘︎ 90 (14%)</div>
+    <div>
+      <p className="text-sm opacity-80">Active Apps</p>
+      <p className="text-4xl font-bold mt-2">132+</p>
+      <p className="text-sm opacity-80 mt-1">31 more will launch</p>
+    </div>
+
   </div>
 </div>
 
@@ -66,9 +73,10 @@ const Home = () => {
       <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-16 mb-16 gap-8 mx-4'>
         <h1 className='col-span-full text-center text-4xl font-extrabold'>Trending Apps</h1>
         <p className='col-span-full text-center  text-lg'>Explore All Trending Apps on the Market developed by us</p>
-        {appData.map(item => (
+        {TrendingApps.map(item => (
           <AppCard item={item} key={item.id} />
         ))}
+     <div className='flex col-span-full justify-center mt-2'> <Link to="/all-apps" className='btn btn-primary bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))]  text-center flex'>Show All</Link> </div>
      </div>
     </div>
   )
