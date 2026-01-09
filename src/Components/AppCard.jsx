@@ -5,7 +5,7 @@ import { FaStar } from 'react-icons/fa';
 const AppCard = ({item}) => {
   return (
     <div>
-       <Link to="/app-details" className="hover-3d my-12 mx-2 cursor-pointer gap-4">
+       <Link to={`/app-details/${item.id}`} className="hover-3d my-12 mx-2 cursor-pointer gap-4">
   
   {/* content */}
         <div className="card  bg-white text-black shadow-sm hover:shadow-lg border border-gray-200 rounded-2xl ">

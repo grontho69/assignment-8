@@ -44,8 +44,10 @@ const Navbar = () => {
       
     </ul>
   </div>
-  <div className="navbar-end">
-    <NavLink to="/contribution" className="btn text-white bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))]">Contribution</NavLink>
+      <div className="navbar-end"> 
+     
+        <div> <Link to="/contribution" className="btn text-white bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))]"><FaGithub /> Contribution</Link></div>
+   
   </div>
 </div>
     
