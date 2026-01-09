@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useAppData from '../Hooks/useAppData';
 import { Link,  } from 'react-router';
 import AppCard from '../Components/AppCard';
+import MyContainer from './../Components/MyContainer';
 
 const AllApps = () => {
   const [search, setSearch] = useState("");
@@ -13,7 +14,8 @@ const AllApps = () => {
 
   return (
     <div>
-         <div className='flex justify-between mt-2 mb-8 p-5 items-center'>
+      <MyContainer>
+          <div className='flex justify-between mt-2 mb-8 p-5 items-center'>
       <h1 className='text-sm font-bold text-center my-10'>({searchedApps.length}) Apps Found</h1>
       <label className="input">
   <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -42,6 +44,7 @@ const AllApps = () => {
         ))}
      
      </div>
+       </MyContainer>
 
 
  </div>   

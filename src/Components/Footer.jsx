@@ -1,6 +1,7 @@
 import React from 'react'
 import MyContainer from './MyContainer'
-import logo from '../assets/logo.png'
+import { Link } from 'react-router'
+
 
 const Footer = () => {
   return (
@@ -9,11 +10,8 @@ const Footer = () => {
 
            <div className="flex md: justify-between gap-8">
           <div className='flex md:items-center mt-1 justify-center'>
-            <img className='w-10 h-10' src=
-              {logo } alt="" />
-            <h3 className="text-white font-semibold mb-2  h-10"> 
-            Hero.Io
-            </h3>
+            
+             <Link to="/" className="btn btn-ghost text-xl"><img src="/src/assets/logo.png" alt="" className="w-8 h-8 mr-2" />Hero.IO</Link>
             
           </div>
 

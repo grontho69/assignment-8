@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import MyContainer from '../Components/MyContainer';
+import { MdOutlineFileDownload } from "react-icons/md";
+import { FaStar } from "react-icons/fa";
 
 const Installation = () => {
   const [installedApps, setInstalledApps] = useState([]);
+
+  const [sortOrder, setSortOrder] = useState('none');
 
   useEffect(() => {
     const storedApps = JSON.parse(localStorage.getItem('installedApp'));
@@ -10,77 +15,85 @@ const Installation = () => {
     
   }, []);
 
+  const sortedApps = () => {
+    if (sortOrder === 'downloads') {
+      return [...installedApps].sort((a, b) => a.downloads - b.downloads);
+    }
+    if (sortOrder === 'rating') {
+      return [...installedApps].sort((a, b) => a.ratingAvg - b.ratingAvg);
+    }
+    if (sortOrder === 'size') {
+      return [...installedApps].sort((a, b) => a.size - b.size);
+    }
+    return [...installedApps];
+  };
+
+  
+
+
+
+  const handelRemove = (id) => {
+    const existingApp = JSON.parse(localStorage.getItem('installedApp'))
+    let updatedApps = existingApp.filter(a => a.id !==id)
+    
+setInstalledApps(prev => prev.filter(a=>a.id !==id) )
+
+
+     localStorage.setItem('installedApp', JSON.stringify(updatedApps));
+}
+
+
+
   return (
     <div>
-       <div className='flex justify-between mt-2 mb-8 p-5 items-center'>
+     
+      <MyContainer>
+          <div className='flex justify-between mt-2 mb-8 p-5 items-center'>
       <h1 className='text-sm font-bold text-center my-10'>({installedApps.length}) Apps Found</h1>
-      <label className="input">
-  <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <g
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      strokeWidth="2.5"
-      fill="none"
-      stroke="currentColor"
-    >
-      <circle cx="11" cy="11" r="8"></circle>
-      <path d="m21 21-4.3-4.3"></path>
-    </g>
-  </svg>
-          <input
-  value={""}
-            type="search" required placeholder="Search" />
+     
+        <label className='form-control max-w-sm'>
+          <select className='select select-bordered'
+            value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+        <option value="none">Sort by</option>
+        <option value="downloads">Downloads</option>
+        <option value="rating">Rating</option>
+        <option value="size">Size</option>
+      </select>
 </label>
+
       </div>
-      <div>
-        <ul className="list bg-base-100 rounded-box shadow-md">
-  
-  <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
-  
-  <li className="list-row">
-    <div><img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/></div>
-    <div>
-      <div>Dio Lupa</div>
-      <div className="text-xs uppercase font-semibold opacity-60">Remaining Reason</div>
+   <div className="w-full space-y-4">
+  {sortedApps().map(app => (
+    <div
+      key={app.id}
+      className="w-full bg-base-100 rounded-xl shadow-md p-4 flex items-center justify-between"
+    >
+      {/* Left section */}
+      <div className="flex items-center gap-4">
+        <img
+          src={app.image}
+          alt={app.title}
+          className="w-12 h-12 rounded-lg"
+        />
+
+        <div>
+          <h3 className="font-semibold">{app.title}</h3>
+          <div className="flex gap-4 text-sm opacity-70">
+            <MdOutlineFileDownload /><span>  {app.downloads}</span>
+            <FaStar /><span>  {app.ratingAvg}</span>
+            <span>{app.size}MB</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Right button */}
+      <button onClick={() => handelRemove(app.id)} className="btn btn-outline btn-sm bg-green-400 text-white">
+        Uninstall
+      </button>
     </div>
-    <button className="btn btn-square btn-ghost">
-      <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-    <button className="btn btn-square btn-ghost">
-      <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
-    </button>
-  </li>
-  
-  <li className="list-row">
-    <div><img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/4@94.webp"/></div>
-    <div>
-      <div>Ellie Beilish</div>
-      <div className="text-xs uppercase font-semibold opacity-60">Bears of a fever</div>
-    </div>
-    <button className="btn btn-square btn-ghost">
-      <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-    <button className="btn btn-square btn-ghost">
-      <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
-    </button>
-  </li>
-  
-  <li className="list-row">
-    <div><img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
-    <div>
-      <div>Sabrino Gardener</div>
-      <div className="text-xs uppercase font-semibold opacity-60">Cappuccino</div>
-    </div>
-    <button className="btn btn-square btn-ghost">
-      <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-    <button className="btn btn-square btn-ghost">
-      <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
-    </button>
-  </li>
-  
-</ul>
+  ))}
 </div>
+</MyContainer>
 
     </div>
   )

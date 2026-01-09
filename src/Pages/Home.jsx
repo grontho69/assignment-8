@@ -5,6 +5,7 @@ import heroImg from "../assets/hero.png"
 import { BsGooglePlay } from "react-icons/bs";
   import { FaAppStoreIos } from "react-icons/fa";
 import useAppData from '../Hooks/useAppData';
+import MyContainer from '../Components/MyContainer';
 
 
 const Home = () => {
@@ -15,7 +16,8 @@ const { appData} =useAppData()
 
   return (
     <div>
- {/*hero section*/}
+      <MyContainer>
+         {/*hero section*/}
 
 <div className="hero bg-base-200 min-h-screen">
   <div className="hero-content text-center">
@@ -27,13 +29,13 @@ const { appData} =useAppData()
        At HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter, and more exciting.Our goal is to turn your ideas into digital experiences that truly make an impact.
       </p>
 
-      {/* Buttons */}
+    
       <div className="flex gap-6">
         <button className="btn "> <BsGooglePlay /> Google Play</button>
         <button className="btn "> <FaAppStoreIos /> App Store</button>
       </div>
 
-      {/* Image */}
+     
       <img
               src={heroImg }
         className=""
@@ -78,6 +80,7 @@ const { appData} =useAppData()
         ))}
      <div className='flex col-span-full justify-center mt-2'> <Link to="/all-apps" className='btn btn-primary bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1))]  text-center flex'>Show All</Link> </div>
      </div>
+</MyContainer>
     </div>
   )
 }
