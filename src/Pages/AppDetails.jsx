@@ -31,7 +31,7 @@ const AppDetails = () => {
     setInstalled(isInstalled);
   }, [app]);
 
-  // 🔄 PAGE LOADING SPINNER
+
   if (loading)
     return (
        <LoadingSpinner fullScreen />
@@ -51,7 +51,7 @@ const AppDetails = () => {
 
     setInstalled(true);
 
-    // ✅ SUCCESS TOAST
+  
     toast.success("App installed successfully", {
       position: "top-right",
       autoClose: 2000,

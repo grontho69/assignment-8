@@ -3,6 +3,7 @@ import MyContainer from './MyContainer'
 import { FaGithub } from "react-icons/fa";
 import { Link, NavLink } from 'react-router';
 import Installation from './../Pages/Installation';
+import Hi from "../assets/logo.png";
 
 
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
           </li>
       </ul>
     </div>
-    <Link to="/" className="btn btn-ghost text-xl"><img src="/src/assets/logo.png" alt="" className="w-8 h-8 mr-2" />Hero.IO</Link>
+    <Link to="/" className="btn btn-ghost text-xl"><img src={Hi} alt="" className="w-8 h-8 mr-2" />Hero.IO</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">

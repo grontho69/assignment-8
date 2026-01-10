@@ -1,6 +1,7 @@
 import React from 'react'
 import MyContainer from './MyContainer'
 import { Link } from 'react-router'
+import Hi from "../assets/logo.png";
 
 
 const Footer = () => {
@@ -11,7 +12,7 @@ const Footer = () => {
            <div className="flex md: justify-between gap-8">
           <div className='flex md:items-center mt-1 justify-center'>
             
-             <Link to="/" className="btn btn-ghost text-xl"><img src="/src/assets/logo.png" alt="" className="w-8 h-8 mr-2" />Hero.IO</Link>
+             <Link to="/" className="btn btn-ghost text-xl"><img src={Hi} alt="" className="w-8 h-8 mr-2" />Hero.IO</Link>
             
           </div>
 
