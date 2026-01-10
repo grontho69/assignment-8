@@ -30,10 +30,27 @@ const { appData} =useAppData()
       </p>
 
     
-      <div className="flex gap-6">
-        <button className="btn "> <BsGooglePlay /> Google Play</button>
-        <button className="btn "> <FaAppStoreIos /> App Store</button>
-      </div>
+ 
+<div className="flex gap-6">
+  <a
+    href="https://play.google.com/store/games?device=windows"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="btn flex items-center gap-2"
+  >
+    <BsGooglePlay /> Google Play
+  </a>
+
+  <a
+    href="https://www.apple.com/app-store/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="btn flex items-center gap-2"
+  >
+    <FaAppStoreIos /> App Store
+  </a>
+</div>
+
 
      
       <img
